@@ -65,11 +65,11 @@
         │	  ├──css				css文件夹
         │	  ├──images				图片
         │	  ├──js					js文件夹
-        │	  ├──template			模版文件
+        │	  ├──template				模版文件
         │	  ├──views				增加版本号后的模版文件
         ├──.babelrc					babel配置
-        ├──.gitignore 				git忽略项
-        ├──gulpfile.babel.js		gulp配置
+        ├──.gitignore 					git忽略项
+        ├──gulpfile.babel.js				gulp配置
         ├──package.json
         ├──README.md
 ```
