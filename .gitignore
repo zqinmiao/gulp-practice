@@ -1,0 +1,23 @@
+# IntelliJ project files
+.git
+.idea
+*.iml
+*.out
+*.pyc
+gen
+venv
+node_modules
+.sass-cache
+*.log
+bower_components
+
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Mac:
+.DS_Store
+.Spotlight-V100
+.Trashes
+
