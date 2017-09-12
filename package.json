@@ -1,7 +1,7 @@
 {
-  "name": "website project",
+  "name": "gulp-practice",
   "version": "0.1.0",
-  "description": "A website project",
+  "description": "A gulp practice project",
   "main": "index.js",
   "repository": {
     "type": "git",

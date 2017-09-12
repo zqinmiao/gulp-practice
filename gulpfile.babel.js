@@ -22,9 +22,7 @@ import revCollector from 'gulp-rev-collector';
 gulp.task('clean', () => del(['./dist/*','./src/views/*'], {dot: true}));
 
 //copy 复制文件
-gulp.task('copy', () => gulp.src(['./src/js/lib/jquery.min.js',
-    './src/js/lib/bootstrap-datetimepicker.min.js',
-    './src/js/lib/template.js'])
+gulp.task('copy', () => gulp.src(['./src/js/lib/jquery.min.js'])
     .pipe(concat('lib.js'))
     .pipe(gulp.dest('./dist/js'))
 );
