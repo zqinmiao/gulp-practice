@@ -31,6 +31,8 @@
   },
   "homepage": "",
   "devDependencies": {
+    "babel-preset-env": "^1.6.0",
+    "gulp-babel": "^7.0.0",
     "gulp-ejs": "^3.0.1",
     "gulp-imagemin": "^3.3.0",
     "gulp-load-plugins": "^1.5.0",
@@ -120,6 +122,8 @@ import ejs from 'gulp-ejs';
 import rev from 'gulp-rev';
 //关联html中，引入资源的版本号
 import revCollector from 'gulp-rev-collector';
+//将es6语法编译成es5语法
+import babel from 'gulp-babel'
 
 // 清理目录
 gulp.task('clean', () => del(['./dist/*','./src/views/*'], {dot: true}));
@@ -173,6 +177,9 @@ gulp.task('postcss', function () {
 //压缩js
 gulp.task('uglifyjs', () => gulp.src('./src/js/*.js')
     .pipe(sourcemaps.init())
+    .pipe(babel({
+            presets: ['env']
+        }))
     .pipe(uglify())
     .pipe(rev())
     .pipe(sourcemaps.write())
@@ -199,6 +206,7 @@ gulp.task('watch', () => {
     gulp.watch('./src/templates/**/*.ejs',['execEjs']);
     gulp.watch('./src/css/**/*.less',['execCss']);
     gulp.watch('./src/js/*.js',['execJs']);
+    gulp.watch('./src/images/**/*',['image']);
 });
 
 //build

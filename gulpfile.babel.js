@@ -17,6 +17,7 @@ import rename from 'gulp-rename';
 import ejs from 'gulp-ejs';
 import rev from 'gulp-rev';
 import revCollector from 'gulp-rev-collector';
+import babel from 'gulp-babel'
 
 // 清理目录
 gulp.task('clean', () => del(['./dist/*','./src/views/*'], {dot: true}));
@@ -68,6 +69,9 @@ gulp.task('postcss', function () {
 //uglifyjs 压缩js
 gulp.task('uglifyjs', () => gulp.src('./src/js/*.js')
     .pipe(sourcemaps.init())
+    .pipe(babel({
+        presets: ['env']
+    }))
     .pipe(uglify())
     .pipe(rev())
     .pipe(sourcemaps.write())
@@ -96,6 +100,7 @@ gulp.task('watch', () => {
     gulp.watch('./src/templates/**/*.ejs',['execEjs']);
     gulp.watch('./src/css/**/*.less',['execCss']);
     gulp.watch('./src/js/*.js',['execJs']);
+    gulp.watch('./src/images/**/*',['image']);
 });
 
 //build
