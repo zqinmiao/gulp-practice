@@ -18,6 +18,7 @@ import ejs from 'gulp-ejs';
 import rev from 'gulp-rev';
 import revCollector from 'gulp-rev-collector';
 import babel from 'gulp-babel'
+import browserSync from 'browser-sync'
 
 // 清理目录
 gulp.task('clean', () => del(['./dist/*','./src/views/*'], {dot: true}));
@@ -97,10 +98,14 @@ gulp.task('execJs',(cb) => sequence('uglifyjs','execEjs',cb))
 
 // watch 监控
 gulp.task('watch', () => {
+    browserSync.init({
+        server: "./dist"
+    });
     gulp.watch('./src/templates/**/*.ejs',['execEjs']);
     gulp.watch('./src/css/**/*.less',['execCss']);
     gulp.watch('./src/js/*.js',['execJs']);
     gulp.watch('./src/images/**/*',['image']);
+    gulp.watch("dist/*.html").on('change', browserSync.reload);
 });
 
 //build

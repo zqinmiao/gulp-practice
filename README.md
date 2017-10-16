@@ -10,6 +10,8 @@
 
 [在 npm 查看所有插件](https://www.npmjs.com/browse/keyword/gulpplugin)
 
+[Browsersync / 说明文档](http://www.browsersync.cn/docs/gulp/)
+
 ## 实战
 
 ### package.json
@@ -32,6 +34,7 @@
   "homepage": "",
   "devDependencies": {
     "babel-preset-env": "^1.6.0",
+    "browser-sync": "^2.18.13",
     "gulp-babel": "^7.0.0",
     "gulp-ejs": "^3.0.1",
     "gulp-imagemin": "^3.3.0",
@@ -124,6 +127,8 @@ import rev from 'gulp-rev';
 import revCollector from 'gulp-rev-collector';
 //将es6语法编译成es5语法
 import babel from 'gulp-babel'
+//浏览器同步工具
+import browserSync from 'browser-sync'
 
 // 清理目录
 gulp.task('clean', () => del(['./dist/*','./src/views/*'], {dot: true}));

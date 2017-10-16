@@ -16,6 +16,7 @@
   "homepage": "",
   "devDependencies": {
     "babel-preset-env": "^1.6.0",
+    "browser-sync": "^2.18.13",
     "gulp-babel": "^7.0.0",
     "gulp-ejs": "^3.0.1",
     "gulp-imagemin": "^3.3.0",
