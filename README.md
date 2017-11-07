@@ -92,9 +92,6 @@
 正常情况下此文件的名称是```gulpfile.js```，由于我们使用了```babel```来实现在gulpfile.js里使用__es2015__语法，所以要将```gulpfile.js```改为```gulpfile.babel.js ```
 
 ```
-/**
- * Created by Mark Zhang on 2017/9/06.
- */
 //导入gulp
 import gulp from 'gulp';
 //压缩js
