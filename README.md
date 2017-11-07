@@ -133,19 +133,17 @@ import browserSync from 'browser-sync'
 // 清理目录
 gulp.task('clean', () => del(['./dist/*','./src/views/*'], {dot: true}));
 
-//复制文件
+//copy 复制文件
 gulp.task('copy', () => gulp.src(['./src/js/lib/jquery.min.js'])
     .pipe(concat('lib.js'))
     .pipe(gulp.dest('./dist/js'))
 );
 
-//压缩图片
+//image 压缩图片
 gulp.task('image', () => gulp.src('./src/images/**/*')
     .pipe(imagemin({
-    	//类型：Boolean 默认：false 无损压缩jpg图片
-        progressive: true,
-        //类型：Number  默认：3  取值范围：0-7（优化等级）
-        optimizationLevel: 3,
+        progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
+        optimizationLevel: 3, //类型：Number  默认：3  取值范围：0-7（优化等级）
         use: [pngquant()]
     }))
     .pipe(gulp.dest('./dist/images'))
@@ -157,7 +155,7 @@ gulp.task('postejs', () => gulp.src(['./src/views/*.ejs'])
     .pipe(gulp.dest('./dist/'))
 );
 
-//处理less
+//css 处理less
 gulp.task('postcss', function () {
     return gulp.src('./src/css/style.less')
         .pipe(less())
@@ -179,12 +177,12 @@ gulp.task('postcss', function () {
         .pipe(gulp.dest('rev/css'))
 });
 
-//压缩js
+//uglifyjs 压缩js
 gulp.task('uglifyjs', () => gulp.src('./src/js/*.js')
     .pipe(sourcemaps.init())
     .pipe(babel({
-            presets: ['env']
-        }))
+        presets: ['env']
+    }))
     .pipe(uglify())
     .pipe(rev())
     .pipe(sourcemaps.write())
@@ -201,17 +199,23 @@ gulp.task('rev',() =>gulp.src(['rev/**/*.json','./src/templates/**/*.ejs'])
     .pipe(gulp.dest('./src/views'))
 )
 
-//执行watch
+/*
+* 执行watch
+* */
 gulp.task('execEjs',(cb) => sequence('rev','postejs',cb))
 gulp.task('execCss',(cb) => sequence('postcss','execEjs',cb))
 gulp.task('execJs',(cb) => sequence('uglifyjs','execEjs',cb))
 
-//watch 监控
+// watch 监控
 gulp.task('watch', () => {
+    browserSync.init({
+        server: "./dist"
+    });
     gulp.watch('./src/templates/**/*.ejs',['execEjs']);
     gulp.watch('./src/css/**/*.less',['execCss']);
     gulp.watch('./src/js/*.js',['execJs']);
     gulp.watch('./src/images/**/*',['image']);
+    gulp.watch("dist/*.html").on('change', browserSync.reload);
 });
 
 //build
@@ -231,5 +235,5 @@ $ cd gulp-practice
 $ npm install
 $ gulp dev		开发模式
 或者
-$ gulp			build
+$ gulp			build模式
 ```
