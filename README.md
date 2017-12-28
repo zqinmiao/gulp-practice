@@ -1,5 +1,7 @@
 # gulp practice
 
+__Node:__ v6.10.0
+
 ## 相关文档
 
 [Gulp中文网](http://www.gulpjs.com.cn/) - 如何开始使用 gulp
